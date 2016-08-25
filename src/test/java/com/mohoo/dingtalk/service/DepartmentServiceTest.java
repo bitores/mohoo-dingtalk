@@ -5,6 +5,8 @@ import java.util.List;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
+import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
 import com.dingtalk.open.client.api.model.corp.Department;
 import com.dingtalk.open.client.api.model.corp.DepartmentDetail;
 import com.dingtalk.open.client.common.SdkInitException;
@@ -36,17 +38,20 @@ public class DepartmentServiceTest {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * 获取部门详细
+	 */
 	@Test
-	public void getDetail(){
+	public void getDetail() {
 		DepartmentService ds = new DepartmentService();
 		try {
-			DepartmentDetail detail = ds.detail(EnvTest.accessToken, "6314478");
-			System.out.println("=== 6314478 ===");
+			DepartmentDetail detail = ds.detail(EnvTest.accessToken, "3372098");
+			System.out.println("=== 3372098 ===");
 			System.out.println(detail.getName());
 			System.out.println(detail.getId());
 			System.out.println(detail.getDeptManagerUseridList());
-			System.out.println("=== 6314478 ===");
+			System.out.println("=== 3372098 ===");
 			Assert.assertNotNull(detail);
 		} catch (ServiceNotExistException e) {
 			// TODO Auto-generated catch block
@@ -55,6 +60,25 @@ public class DepartmentServiceTest {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (ServiceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 部门用户详细
+	 */
+	@Test
+	public void getUserDetails() {
+		DepartmentService ds = new DepartmentService();
+		try {
+			CorpUserDetailList list = ds.getUserDetails(EnvTest.accessToken, 3372098, Long.valueOf(0), 10, "");
+			List<CorpUserDetail> userList = list.getUserlist();
+			System.out.println("userList size: " + userList.size());
+			for (CorpUserDetail detail : userList) {
+				System.out.println("userinfo : " + detail.getName() + " Userid: " + detail.getUserid());
+			}
+		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
