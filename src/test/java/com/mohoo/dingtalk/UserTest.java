@@ -8,7 +8,7 @@ import com.dingtalk.open.client.api.service.corp.CorpUserService;
 
 public class UserTest {
 	// 获取成员
-	@Test
+	//@Test
 	public static void getUser() throws Exception {
 		String accessToken = "";
 		String userid = "";
