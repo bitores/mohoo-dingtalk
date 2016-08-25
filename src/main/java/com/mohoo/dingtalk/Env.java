@@ -18,5 +18,7 @@ public class Env {
 	public static final String SUITE_SECRET = "";
 	public static final String TOKEN = "";
 	public static final String ENCODING_AES_KEY = "";
+	
+	
 
 }
