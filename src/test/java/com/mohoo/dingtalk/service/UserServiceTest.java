@@ -5,6 +5,7 @@ import org.junit.Test;
 
 import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
 import com.mohoo.dingtalk.EnvTest;
+import com.mohoo.dingtalk.base.exception.ApplicationError;
 
 public class UserServiceTest {
 
@@ -20,4 +21,18 @@ public class UserServiceTest {
 			e.printStackTrace();
 		}
 	}
+	
+	@Test
+	public void getUser() throws ApplicationError {
+		UserServiceImpl user = new UserServiceImpl();
+		try {
+			CorpUserDetail detail = user.getUserinfo(EnvTest.accessToken, "31001");
+			System.out.println("--------------实现接口类 : " + detail.getName() + " Userid: " + detail.getUserid());
+			Assert.assertNotNull(detail);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 }
