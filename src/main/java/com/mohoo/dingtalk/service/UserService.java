@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.alibaba.fastjson.JSONObject;
 import com.dingtalk.open.client.ServiceFactory;
+import com.dingtalk.open.client.api.model.corp.CorpUser;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
 import com.dingtalk.open.client.api.model.corp.CorpUserList;
@@ -18,6 +19,19 @@ import com.mohoo.dingtalk.util.FileUtils;
  *
  */
 public class UserService {
+	
+	public static void main(String[] args) throws Exception {
+		CorpUserList cul=UserService.getDepartmentUser(new TokenService().getAccessToken(), 6314478, 0l, 20, "");
+		List<CorpUser> list= cul.getUserlist();
+		System.out.println("================================="+list.size());
+		for (CorpUser corpUser : list) {
+			System.out.println(corpUser.getName()+","+corpUser.getUserid()+","+corpUser.getActive());
+		}
+		CorpUserDetail cud=new UserService().getUser(new TokenService().getAccessToken(), 31001+"");
+		System.out.println("=========================================");
+		System.out.println(cud);
+		System.out.println("=========================================");
+	}
 
 	/**
 	 * 获取成员<br>
@@ -116,6 +130,24 @@ public class UserService {
 			String order) throws Exception {
 		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
 		return corpUserService.getCorpUserSimpleList(accessToken, departmentId, offset, size, order);
+	}
+	
+
+	/**
+	 * 获取部门成员详细信息
+	 * 
+	 * @param accessToken
+	 * @param departmentId
+	 * @param offset
+	 * @param size
+	 * @param order
+	 * @return
+	 * @throws Exception
+	 */
+	public static CorpUserDetailList getDepartmentUserDetail(String accessToken, long departmentId, Long offset, Integer size,
+			String order) throws Exception {
+		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
+		return corpUserService.getCorpUserList(accessToken, departmentId, offset, size, order);
 	}
 
 	/**

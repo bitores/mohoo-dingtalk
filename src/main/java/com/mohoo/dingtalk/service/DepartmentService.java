@@ -32,12 +32,18 @@ public class DepartmentService {
 	 * @throws SdkInitException
 	 * @throws ServiceException
 	 */
-	public List<Department> list(String accessToken, String parentDeptId)
-			throws ServiceNotExistException, SdkInitException, ServiceException {
-		CorpDepartmentService corpDepartmentService = ServiceFactory.getInstance()
-				.getOpenService(CorpDepartmentService.class);
+	public List<Department> list(String accessToken, String parentDeptId) throws ServiceNotExistException, SdkInitException, ServiceException {
+		CorpDepartmentService corpDepartmentService = ServiceFactory.getInstance().getOpenService(CorpDepartmentService.class);
 		List<Department> deptList = corpDepartmentService.getDeptList(accessToken, parentDeptId);
 		return deptList;
+	}
+
+	public static void main(String[] args) throws ServiceNotExistException, SdkInitException, ServiceException {
+		DepartmentService ds = new DepartmentService();
+		List<Department> list=ds.list(new TokenService().getAccessToken(), "1");
+		for (Department department : list) {
+			System.out.println(department.getName()+","+department.getId()+","+department.getParentid()+","+department.getAutoAddUser());
+		}
 	}
 
 	/**
@@ -50,10 +56,8 @@ public class DepartmentService {
 	 * @throws SdkInitException
 	 * @throws ServiceException
 	 */
-	public DepartmentDetail detail(String accessToken, String deptId)
-			throws ServiceNotExistException, SdkInitException, ServiceException {
-		CorpDepartmentService corpDepartmentService = ServiceFactory.getInstance()
-				.getOpenService(CorpDepartmentService.class);
+	public DepartmentDetail detail(String accessToken, String deptId) throws ServiceNotExistException, SdkInitException, ServiceException {
+		CorpDepartmentService corpDepartmentService = ServiceFactory.getInstance().getOpenService(CorpDepartmentService.class);
 		return corpDepartmentService.getDeptDetail(accessToken, deptId);
 	}
 
@@ -68,8 +72,7 @@ public class DepartmentService {
 	 * @return
 	 * @throws Exception
 	 */
-	public CorpUserList getDepartmentUser(String accessToken, long departmentId, Long offset, Integer size,
-			String order) throws Exception {
+	public CorpUserList getDepartmentUser(String accessToken, long departmentId, Long offset, Integer size, String order) throws Exception {
 
 		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
 		return corpUserService.getCorpUserSimpleList(accessToken, departmentId, offset, size, order);
@@ -86,8 +89,7 @@ public class DepartmentService {
 	 * @return
 	 * @throws Exception
 	 */
-	public CorpUserDetailList getUserDetails(String accessToken, long departmentId, Long offset, Integer size,
-			String order) throws Exception {
+	public CorpUserDetailList getUserDetails(String accessToken, long departmentId, Long offset, Integer size, String order) throws Exception {
 
 		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
 		return corpUserService.getCorpUserList(accessToken, departmentId, offset, size, order);

@@ -8,6 +8,8 @@ package com.mohoo.dingtalk.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
 import com.dingtalk.open.client.ServiceFactory;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetail;
 import com.dingtalk.open.client.api.model.corp.CorpUserDetailList;
@@ -30,6 +32,7 @@ import com.mohoo.dingtalk.base.exception.ApplicationError;
  * @author caonn
  * @version 1.0
  */
+@Service
 public class UserServiceImpl implements CorpUserService {
 
 	private CorpUserService corpUserService;
@@ -131,7 +134,7 @@ public class UserServiceImpl implements CorpUserService {
 	public CorpUserList getCorpUserSimpleList(String arg0, long arg1, Long arg2, Integer arg3, String arg4)
 			throws ServiceException {
 		// TODO Auto-generated method stub
-		return null;
+		return corpUserService.getCorpUserSimpleList(arg0, arg1, arg2, arg3, arg4);
 	}
 
 	/*
