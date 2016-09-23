@@ -122,7 +122,7 @@ public class RestFulUtil {
 		return result;
 	}
 
-	public static void main(String[] args) {
+	public static void test(String[] args) {
 		System.out.println(restFulMap(RES_FAULT_INTER, null));
 		System.out.println(restFulMap(RES_SUCCESS, "1234"));
 	}

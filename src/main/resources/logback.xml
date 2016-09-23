@@ -65,7 +65,7 @@
 	<!-- <logger name="java.sql.PreparedStatement" level="DEBUG" /> -->
 	<!-- <logger name="org.apache.ibatis" level="DEBUG"/> -->
 	<!-- <logger name="java.sql" level="DEBUG"/> -->
-	<root level="INFO">
+	<root level="ERROR">
 		<appender-ref ref="INFO_FILE" />
 		<appender-ref ref="ERROR_FILE" />
 	</root>

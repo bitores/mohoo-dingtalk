@@ -23,17 +23,17 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-			<exclusions>
-				<exclusion>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-tomcat</artifactId>
-				</exclusion>
-			</exclusions>
+<!-- 			<exclusions> -->
+<!-- 				<exclusion> -->
+<!-- 					<groupId>org.springframework.boot</groupId> -->
+<!-- 					<artifactId>spring-boot-starter-tomcat</artifactId> -->
+<!-- 				</exclusion> -->
+<!-- 			</exclusions> -->
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jetty</artifactId>
-		</dependency>
+<!-- 		<dependency> -->
+<!-- 			<groupId>org.springframework.boot</groupId> -->
+<!-- 			<artifactId>spring-boot-starter-jetty</artifactId> -->
+<!-- 		</dependency> -->
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>fastjson</artifactId>
@@ -70,26 +70,41 @@
 			<groupId>com.dingtalk</groupId>
 			<artifactId>client-sdk.common</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/client-sdk.common-1.0.0.jar</systemPath>
+<!-- 			<scope>system</scope> -->
+<!-- 			<systemPath>${project.basedir}/lib/client-sdk.common-1.0.0.jar</systemPath> -->
 		</dependency>
 		<dependency>
 			<groupId>com.dingtalk</groupId>
 			<artifactId>client-sdk.api</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/client-sdk.api-1.0.0.jar</systemPath>
+<!-- 			<scope>system</scope> -->
+<!-- 			<systemPath>${project.basedir}/lib/client-sdk.api-1.0.0.jar</systemPath> -->
 		</dependency>
 		<dependency>
 			<groupId>com.dingtalk</groupId>
 			<artifactId>client-sdk.core</artifactId>
 			<version>1.0.0</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/lib/client-sdk.core-1.0.0.jar</systemPath>
+<!-- 			<scope>system</scope> -->
+<!-- 			<systemPath>${project.basedir}/lib/client-sdk.core-1.0.0.jar</systemPath> -->
+		</dependency>
+		<dependency>
+			<groupId>com.dingtalk</groupId>
+			<artifactId>client-sdk.core</artifactId>
+			<version>1.0.0</version>
+<!-- 			<scope>system</scope> -->
+<!-- 			<systemPath>${project.basedir}/lib/client-sdk.spring-1.0.0.jar</systemPath> -->
 		</dependency>
 		<!-- com.dingtalk end -->
-
-
+		<!-- jsp -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
 		<!-- test -->
 		<dependency>
 			<groupId>junit</groupId>
@@ -98,7 +113,43 @@
 		</dependency>
 	</dependencies>
 	<build>
+		<resources>
+	            <resource>
+	                <directory>${basedir}/src/main/webapp</directory>
+                    <!--注意此次必须要放在此目录下才能被访问到-->
+	                <targetPath>META-INF/resources</targetPath> 
+	                <includes>
+	                    <include>**/**</include>
+	                </includes>
+	            </resource>
+	            <resource>
+	                <directory>${basedir}/src/main/resources</directory>
+	                <includes>
+	                    <include>**/**</include>
+	                </includes>
+	            </resource>
+	    </resources>
 		<plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+	          	<archive>
+		            <manifest>
+		              <addClasspath>true</addClasspath>
+		              <mainClass>com.mohoo.dingtalk.App</mainClass>
+		            </manifest>
+	          	</archive>
+        		</configuration>
+            </plugin>
+            <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<configuration>
+					<useSystemClassLoader>false</useSystemClassLoader>
+				</configuration>
+			</plugin>
+            <!-- 
 			<plugin>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<executions>
@@ -125,6 +176,7 @@
 					</compilerArguments>
 				</configuration>
 			</plugin>
+             -->
 		</plugins>
 	</build>
 

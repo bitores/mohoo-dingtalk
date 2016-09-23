@@ -38,7 +38,7 @@ public class DepartmentService {
 		return deptList;
 	}
 
-	public static void main(String[] args) throws ServiceNotExistException, SdkInitException, ServiceException {
+	public static void test(String[] args) throws ServiceNotExistException, SdkInitException, ServiceException {
 		DepartmentService ds = new DepartmentService();
 		List<Department> list=ds.list(new TokenService().getAccessToken(), "1");
 		for (Department department : list) {

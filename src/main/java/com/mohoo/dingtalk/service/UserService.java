@@ -20,7 +20,7 @@ import com.mohoo.dingtalk.util.FileUtils;
  */
 public class UserService {
 	
-	public static void main(String[] args) throws Exception {
+	public static void test(String[] args) throws Exception {
 		CorpUserList cul=UserService.getDepartmentUser(new TokenService().getAccessToken(), 6314478, 0l, 20, "");
 		List<CorpUser> list= cul.getUserlist();
 		System.out.println("================================="+list.size());
@@ -175,9 +175,22 @@ public class UserService {
 	 * @return
 	 * @throws Exception
 	 */
-	public static CorpUserDetail getUserInfo(String accessToken, String code) throws Exception {
+	public static CorpUserDetail getUserDetail(String accessToken, String code) throws Exception {
 		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
 		return corpUserService.getUserinfo(accessToken, code);
+	}
+	
+	/**
+	 * 获取成员详细信息
+	 * 
+	 * @param accessToken
+	 * @param code
+	 * @return
+	 * @throws Exception
+	 */
+	public static CorpUserDetail getUserInfo(String accessToken,String userId) throws Exception {
+		CorpUserService corpUserService = ServiceFactory.getInstance().getOpenService(CorpUserService.class);
+		return corpUserService.getCorpUser(accessToken, userId);
 	}
 
 }
