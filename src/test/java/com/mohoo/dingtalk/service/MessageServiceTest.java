@@ -5,7 +5,6 @@ import org.junit.Test;
 
 import com.dingtalk.open.client.api.model.corp.MessageBody;
 import com.dingtalk.open.client.api.model.corp.MessageSendResult;
-import com.mohoo.dingtalk.EnvTest;
 
 public class MessageServiceTest {
 	/**
@@ -18,7 +17,7 @@ public class MessageServiceTest {
 		MessageBody.TextBody textBody = new MessageBody.TextBody();
 		textBody.setContent("TextMessage");
 		try {
-			MessageSendResult rs = ms.sendToCorpConversation(EnvTest.accessToken, "31001", "", "36805200", "text",
+			MessageSendResult rs = ms.sendToCorpConversation(TokenService.getAccessToken(), "31001", "", "36805200", "text",
 					textBody);
 			System.out.println(
 					"send message text: Invalidparty" + rs.getInvalidparty() + " Invaliduser" + rs.getInvaliduser());
@@ -41,7 +40,7 @@ public class MessageServiceTest {
 		linkBody.setPicUrl("http://i01.lw.aliimg.com/media/lADOCuQ84s0E2s0E1w_1239_1242.jpg");
 		linkBody.setText("图文想想");
 		try {
-			MessageSendResult rs = ms.sendToCorpConversation(EnvTest.accessToken, "31001", "", "36805200", "link",
+			MessageSendResult rs = ms.sendToCorpConversation(TokenService.getAccessToken(), "31001", "", "36805200", "link",
 					linkBody);
 			System.out.println(
 					"send message link: Invalidparty" + rs.getInvalidparty() + " Invaliduser" + rs.getInvaliduser());

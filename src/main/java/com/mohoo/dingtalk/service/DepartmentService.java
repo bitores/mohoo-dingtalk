@@ -40,7 +40,7 @@ public class DepartmentService {
 
 	public static void test(String[] args) throws ServiceNotExistException, SdkInitException, ServiceException {
 		DepartmentService ds = new DepartmentService();
-		List<Department> list=ds.list(new TokenService().getAccessToken(), "1");
+		List<Department> list=ds.list(TokenService.getAccessToken(), "1");
 		for (Department department : list) {
 			System.out.println(department.getName()+","+department.getId()+","+department.getParentid()+","+department.getAutoAddUser());
 		}

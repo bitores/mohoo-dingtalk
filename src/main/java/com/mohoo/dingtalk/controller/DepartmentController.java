@@ -35,7 +35,6 @@ import com.mohoo.dingtalk.util.RestFulUtil;
 @RestController
 @RequestMapping("dingtalk/v1.0/dept")
 public class DepartmentController {
-	private TokenService tokenService = new TokenService();
 	private DepartmentService ds = new DepartmentService();
 
 	public static String departList = "https://oapi.dingtalk.com/department/list";
@@ -44,7 +43,7 @@ public class DepartmentController {
 	@ResponseBody
 	public Map<String, Object> findAllDept(String parentDeptId) {
 		try {
-			List<Department> list = ds.list(tokenService.getAccessToken(), parentDeptId);
+			List<Department> list = ds.list(TokenService.getAccessToken(), parentDeptId);
 			return RestFulUtil.restFulMap(RestFulUtil.RES_SUCCESS, list);
 		} catch (ServiceNotExistException e) {
 			e.printStackTrace();

@@ -12,14 +12,13 @@ import com.dingtalk.open.client.api.model.corp.DepartmentDetail;
 import com.dingtalk.open.client.common.SdkInitException;
 import com.dingtalk.open.client.common.ServiceException;
 import com.dingtalk.open.client.common.ServiceNotExistException;
-import com.mohoo.dingtalk.EnvTest;
 
 public class DepartmentServiceTest {
 	@Test
 	public void getList() {
 		DepartmentService ds = new DepartmentService();
 		try {
-			List<Department> deptList = ds.list(EnvTest.accessToken, "");
+			List<Department> deptList = ds.list(TokenService.getAccessToken(), "");
 			for (Department dept : deptList) {
 				System.out.println(dept.getName());
 				System.out.println(dept.getId());
@@ -46,7 +45,7 @@ public class DepartmentServiceTest {
 	public void getDetail() {
 		DepartmentService ds = new DepartmentService();
 		try {
-			DepartmentDetail detail = ds.detail(EnvTest.accessToken, "3372098");
+			DepartmentDetail detail = ds.detail(TokenService.getAccessToken(), "3372098");
 			System.out.println("=== 3372098 ===");
 			System.out.println(detail.getName());
 			System.out.println(detail.getId());
@@ -72,14 +71,13 @@ public class DepartmentServiceTest {
 	public void getUserDetails() {
 		DepartmentService ds = new DepartmentService();
 		try {
-			CorpUserDetailList list = ds.getUserDetails(EnvTest.accessToken, 3372098, Long.valueOf(0), 10, "");
+			CorpUserDetailList list = ds.getUserDetails(TokenService.getAccessToken(), 3372098, Long.valueOf(0), 10, "");
 			List<CorpUserDetail> userList = list.getUserlist();
 			System.out.println("userList size: " + userList.size());
 			for (CorpUserDetail detail : userList) {
 				System.out.println("userinfo : " + detail.getName() + " Userid: " + detail.getUserid());
 			}
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

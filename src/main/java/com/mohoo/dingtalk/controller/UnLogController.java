@@ -42,7 +42,6 @@ import com.mohoo.dingtalk.util.aes.DingTalkJsApiSingnature;
 @Controller
 public class UnLogController {
 
-	private static TokenService tokenService = new TokenService();
 
 	private static JsApiService jsApiService = new JsApiService();
 
@@ -51,7 +50,7 @@ public class UnLogController {
 	public Map<String,Object> getUserInfo(HttpServletRequest request){
 		String message = "";
 		try {
-			String access_token = tokenService.getAccessToken();
+			String access_token = TokenService.getAccessToken();
 			String code = request.getParameter("code");
 			System.out.println("================mycode" + code);
 			CorpUserDetail user = UserService.getUserDetail(access_token, code);
@@ -82,7 +81,7 @@ public class UnLogController {
 	 */
 	@RequestMapping("/")
 	public ModelAndView testPage(ModelMap model, HttpServletRequest request) throws Exception {
-		String access_token = tokenService.getAccessToken();
+		String access_token = TokenService.getAccessToken();
 		String jsTicket = jsApiService.getTicket(access_token);
 		String nonceStr = "mohoo2011";
 		Long timeStamp = System.currentTimeMillis() / 1000;

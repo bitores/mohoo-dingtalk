@@ -21,13 +21,13 @@ import com.mohoo.dingtalk.util.FileUtils;
 public class UserService {
 	
 	public static void test(String[] args) throws Exception {
-		CorpUserList cul=UserService.getDepartmentUser(new TokenService().getAccessToken(), 6314478, 0l, 20, "");
+		CorpUserList cul=UserService.getDepartmentUser(TokenService.getAccessToken(), 6314478, 0l, 20, "");
 		List<CorpUser> list= cul.getUserlist();
 		System.out.println("================================="+list.size());
 		for (CorpUser corpUser : list) {
 			System.out.println(corpUser.getName()+","+corpUser.getUserid()+","+corpUser.getActive());
 		}
-		CorpUserDetail cud=new UserService().getUser(new TokenService().getAccessToken(), 31001+"");
+		CorpUserDetail cud=new UserService().getUser(TokenService.getAccessToken(), 31001+"");
 		System.out.println("=========================================");
 		System.out.println(cud);
 		System.out.println("=========================================");

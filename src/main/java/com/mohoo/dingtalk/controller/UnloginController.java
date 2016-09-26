@@ -41,7 +41,6 @@ import com.mohoo.dingtalk.util.aes.DingTalkJsApiSingnature;
 @RequestMapping("dingtalk/v1.0/unlogin")
 @Controller
 public class UnloginController {
-	private static TokenService tokenService = new TokenService();
 
 	private static JsApiService jsApiService = new JsApiService();
 
@@ -55,7 +54,7 @@ public class UnloginController {
 	@ResponseBody
 	public ModelAndView findLink(ModelMap model,HttpServletRequest request) {
 		try {
-			String access_token = tokenService.getAccessToken();
+			String access_token = TokenService.getAccessToken();
 			String jsTicket = jsApiService.getTicket(access_token);
 			String nonceStr = "mohoo2011";
 			Long timeStamp = System.currentTimeMillis() / 1000;
@@ -98,7 +97,7 @@ public class UnloginController {
 	public Map<String, Object> getUserInfo(HttpServletRequest request) {
 		String message = "";
 		try {
-			String access_token = tokenService.getAccessToken();
+			String access_token = TokenService.getAccessToken();
 			String code = request.getParameter("code");
 			System.out.println("================mycode" + code);
 			CorpUserDetail user = UserService.getUserDetail(access_token, code);
