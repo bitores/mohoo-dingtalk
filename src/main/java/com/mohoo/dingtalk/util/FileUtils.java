@@ -14,7 +14,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
-import org.apache.http.util.TextUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
@@ -136,7 +136,7 @@ public class FileUtils {
 
 			String value = js.getString(key);
 			Long valueLong;
-			if (TextUtils.isEmpty(value)) {
+			if (StringUtils.isEmpty(value)) {
 				valueLong = js.getLong(key);
 			} else {
 				valueLong = Long.valueOf(value);

@@ -1,6 +1,5 @@
 package com.mohoo.dingtalk.service;
 
-import org.springframework.stereotype.Service;
 
 import com.dingtalk.open.client.ServiceFactory;
 import com.dingtalk.open.client.api.service.corp.CorpConnectionService;
@@ -15,7 +14,6 @@ import com.mohoo.dingtalk.util.ConstantUtil;
  * @author mohoo
  *
  */
-@Service
 public class TokenService {
 
 	public static String getAccessToken() throws ServiceNotExistException, SdkInitException, ServiceException {
