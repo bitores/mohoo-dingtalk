@@ -32,3 +32,5 @@ local.properties
 .project
 .classpath
 /logs/
+.idea
+dingtalk.iml
